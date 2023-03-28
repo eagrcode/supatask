@@ -3,29 +3,69 @@
   justify-content: center;
   align-items: center;
   height: calc(100vh - 4rem);
+
+  &.dark {
+    background-color: var(--primary-bg-dark);
+    color: var(--primary-text-dark);
+  }
+
+  &.light {
+    background-color: var(--primary-bg-light);
+    color: var(--primary-text-light);
+  }
 }
 
 .form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  background-color: black;
   padding: 1rem;
   gap: 1rem;
+  width: 100%;
+  max-width: 500px;
 }
 
 .formHeader {
-  color: white;
   font-size: 1.6rem;
 }
 
 .input {
   padding: 0.5rem;
+  width: 100%;
+  font-size: 1.2rem;
+  outline-color: var(--accent-color);
+  border: transparent;
+
+  &.dark {
+    background-color: hsl(0, 0%, 20%);
+    color: var(--primary-text-dark);
+  }
+
+  &.light {
+    background-color: hsl(270, 5%, 80%);
+    color: var(--primary-text-light);
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--primary-text-light);
+  -webkit-box-shadow: 0 0 0px 40rem hsl(0, 0%, 20%) inset;
 }
 
 .button {
   cursor: pointer;
   width: 100%;
-  padding: 0.5rem;
+  padding: 10px 0;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: transparent;
+  background-color: var(--accent-color);
+  color: var(--primary-text-dark);
+
+  &:hover {
+    background-color: hsl(270, 90%, 25%);
+  }
 }

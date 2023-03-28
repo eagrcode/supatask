@@ -3,18 +3,20 @@ import styles from "./Login.module.scss";
 
 // react
 import { useState } from "react";
-
 import { useNavigate } from "react-router";
 
 // context
 import { useAuth } from "../../context/AuthProvider";
+import { useTheme } from "../../context/ThemeProvider";
 
 function Login() {
+  // state
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // destructure context
   const { login } = useAuth();
-  const { user } = useAuth();
+  const { theme } = useTheme();
 
   const navigate = useNavigate();
 
@@ -31,7 +33,7 @@ function Login() {
 
   return (
     <>
-      <main className={styles.main}>
+      <main className={`${styles.main} ${styles[theme]}`}>
         <form className={styles.form} onSubmit={signInUser}>
           <span className={styles.formHeader}>Sign In</span>
           <input
@@ -39,7 +41,7 @@ function Login() {
             value={email}
             name="email"
             onChange={(e) => setEmail(e.target.value)}
-            className={styles.input}
+            className={`${styles.input} ${styles[theme]}`}
             placeholder="Enter your email"
           />
           <input
@@ -47,7 +49,7 @@ function Login() {
             value={password}
             name="password"
             onChange={(e) => setPassword(e.target.value)}
-            className={styles.input}
+            className={`${styles.input} ${styles[theme]}`}
             placeholder="Enter your password"
           />
           <button className={styles.button} type="submit">
