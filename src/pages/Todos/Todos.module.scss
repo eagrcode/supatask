@@ -1,0 +1,68 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  min-height: calc(100vh - 4rem);
+}
+
+// .modal {
+//   position: absolute;
+//   background-color: hsl(0, 0%, 50%, 0.9);
+//   height: 100%;
+//   width: 100%;
+
+//   justify-content: center;
+//   align-items: center;
+//   display: none;
+
+//   &.open {
+//     display: flex;
+//   }
+// }
+
+.form {
+  display: flex;
+  justify-content: space-between;
+  width: 500px;
+  padding: 1rem;
+  background-color: white;
+  gap: 1rem;
+
+  input {
+    width: 100%;
+  }
+}
+
+.todoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 35rem;
+}
+
+.addTodo {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: blue;
+  color: white;
+  border-radius: 10px;
+
+  input {
+    width: 85%;
+  }
+
+  button {
+    width: 15%;
+  }
+}
+
+.todoList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+

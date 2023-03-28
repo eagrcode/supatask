@@ -1,0 +1,18 @@
+:root {
+  /* dark theme */
+  --primary-bg-dark: hsl(0, 0%, 10%);
+  --primary-text-dark: hsl(270, 5%, 90%);
+  --nav-bg-dark: hsl(0, 0%, 10%);
+
+  /* light theme */
+  --primary-bg-light: hsl(270, 5%, 90%);
+  --primary-text-light: hsl(0, 0%, 10%);
+  --nav-bg-light: hsl(270, 5%, 90%);
+
+  /* accents */
+  --accent-color: hsl(270, 90%, 30%);
+}
+
+/* --primary-bg-color: hsl(220, 30%, 15%); */
+/* --accent-color: hsl(195, 80%, 50%); */
+/* --nav-bg-color: hsl(220, 30%, 10%); */

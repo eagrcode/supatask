@@ -1,0 +1,15 @@
+.btn {
+  border: transparent;
+  background-color: var(--accent-color);
+  color: var(--primary-text-dark);
+  padding: 15px 30px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+
+  &:hover {
+    background-color: hsl(270, 90%, 25%);
+  }
+}
