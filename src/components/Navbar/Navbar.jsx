@@ -6,6 +6,7 @@ import { useState } from "react";
 
 // react-router
 import { NavLink, Outlet } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 // context
 import { useAuth } from "../../context/AuthProvider";
@@ -22,18 +23,23 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   // context destructure
-  const { auth, user, signOut } = useAuth();
+  const { user, signOut, loading } = useAuth();
   const { theme, setTheme } = useTheme();
 
   // signs user out of app
   function signOutUser() {
     signOut();
+    setIsOpen(!isOpen);
   }
 
   return (
     <>
       <nav className={`${styles.nav} ${styles[theme]}`}>
-        <NavLink className={`${styles.logo} ${styles[theme]}`} to="/">
+        <NavLink
+          onClick={isOpen ? () => setIsOpen(!isOpen) : undefined}
+          className={`${styles.logo} ${styles[theme]}`}
+          to="/"
+        >
           Supatask
         </NavLink>
         <Burger isOpen={isOpen} setIsOpen={setIsOpen} />
@@ -45,19 +51,31 @@ function Navbar() {
             {user ? (
               <>
                 <li className={styles.li}>
-                  <NavLink className={`${styles.link} ${styles[theme]}`} to="todos">
+                  <NavLink
+                    onClick={isOpen ? () => setIsOpen(!isOpen) : undefined}
+                    className={`${styles.link} ${styles[theme]}`}
+                    to="todos"
+                  >
                     Todos
                   </NavLink>
                 </li>
                 <li className={styles.li}>
-                  <NavLink className={`${styles.link} ${styles[theme]}`} to="account">
+                  <NavLink
+                    onClick={isOpen ? () => setIsOpen(!isOpen) : undefined}
+                    className={`${styles.link} ${styles[theme]}`}
+                    to="account"
+                  >
                     Account
                   </NavLink>
                 </li>
               </>
             ) : (
               <li className={styles.li}>
-                <NavLink className={`${styles.link} ${styles[theme]}`} to="register">
+                <NavLink
+                  onClick={isOpen ? () => setIsOpen(!isOpen) : undefined}
+                  className={`${styles.link} ${styles[theme]}`}
+                  to="register"
+                >
                   Register
                 </NavLink>
               </li>
@@ -69,7 +87,11 @@ function Navbar() {
                   Log Out
                 </button>
               ) : (
-                <NavLink className={`${styles.link} ${styles[theme]}`} to="login">
+                <NavLink
+                  onClick={isOpen ? () => setIsOpen(!isOpen) : undefined}
+                  className={`${styles.link} ${styles[theme]}`}
+                  to="login"
+                >
                   Log In
                 </NavLink>
               )}

@@ -14,8 +14,11 @@
   /* accents */
   --accent-color: hsl(270, 90%, 30%);
 
+  /* SPACING */
   --nav-height: 4rem;
   --nav-height-mob: 3.5rem;
+  --padding-mob: 1rem;
+  --padding: 5rem;
 }
 
 /* --primary-bg-color: hsl(220, 30%, 15%); */

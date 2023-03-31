@@ -14,23 +14,29 @@ const AuthProvider = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  console.log(loading);
+
   // login
-  const login = (email, password) => supabase.auth.signInWithPassword({ email, password });
+  const login = async (email, password) =>
+    await supabase.auth.signInWithPassword({ email, password });
 
   // sign out
-  const signOut = () => {
-    supabase.auth.signOut();
+  const signOut = async () => {
+    setLoading(true);
+    await supabase.auth.signOut();
+    setLoading(false);
   };
 
   // retrieve user
   useEffect(() => {
+    setLoading(true);
     const getUser = async () => {
       const {
         data: { user },
       } = await supabase.auth.getUser();
       setUser(user);
-      setLoading(false);
       console.log(user);
+      setLoading(false);
     };
     getUser();
 
@@ -49,12 +55,6 @@ const AuthProvider = ({ children }) => {
       data.subscription.unsubscribe();
     };
   }, []);
-
-  // useEffect(() => {
-  //   if (!user && location.pathname === "/account") {
-  //     navigate("/register");
-  //   }
-  // }, []);
 
   return (
     <AuthContext.Provider value={{ user, loading, login, signOut }}>
