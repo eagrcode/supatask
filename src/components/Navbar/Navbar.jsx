@@ -1,6 +1,9 @@
 // styles
 import styles from "./Navbar.module.scss";
 
+// react
+import { useState } from "react";
+
 // react-router
 import { NavLink, Outlet } from "react-router-dom";
 
@@ -8,15 +11,21 @@ import { NavLink, Outlet } from "react-router-dom";
 import { useAuth } from "../../context/AuthProvider";
 import { useTheme } from "../../context/ThemeProvider";
 
+// components
+import { Burger } from "../../components";
+
 // icons
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 function Navbar() {
+  // state
+  const [isOpen, setIsOpen] = useState(false);
+
+  // context destructure
   const { auth, user, signOut } = useAuth();
   const { theme, setTheme } = useTheme();
 
-  console.log(theme);
-
+  // signs user out of app
   function signOutUser() {
     signOut();
   }
@@ -27,8 +36,12 @@ function Navbar() {
         <NavLink className={`${styles.logo} ${styles[theme]}`} to="/">
           Supatask
         </NavLink>
-        <div>
-          <ul className={styles.ul}>
+        <Burger isOpen={isOpen} setIsOpen={setIsOpen} />
+
+        <div
+          className={isOpen ? `${styles.listBG} ${styles[theme]} ${styles.open}` : styles.listBG}
+        >
+          <ul className={isOpen ? `${styles.ul} ${styles[theme]} ${styles.open}` : styles.ul}>
             {user ? (
               <>
                 <li className={styles.li}>
@@ -52,20 +65,22 @@ function Navbar() {
 
             <li className={styles.li}>
               {user ? (
-                <button onClick={signOutUser}>Log Out</button>
+                <button className={styles.logoutBtn} onClick={signOutUser}>
+                  Log Out
+                </button>
               ) : (
                 <NavLink className={`${styles.link} ${styles[theme]}`} to="login">
                   Log In
                 </NavLink>
               )}
             </li>
+            <button
+              className={`${styles.btn} ${styles[theme]}`}
+              onClick={() => setTheme(theme == "light" ? "dark" : "light")}
+            >
+              {theme == "dark" ? <MdLightMode size={30} /> : <MdDarkMode size={30} />}
+            </button>
           </ul>
-          <button
-            className={`${styles.btn} ${styles[theme]}`}
-            onClick={() => setTheme(theme == "light" ? "dark" : "light")}
-          >
-            {theme == "dark" ? <MdLightMode size={30} /> : <MdDarkMode size={30} />}
-          </button>
         </div>
       </nav>
       <Outlet />

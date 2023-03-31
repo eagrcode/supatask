@@ -1,8 +1,8 @@
 // styles
 import { NavLink } from "react-router-dom";
-import styles from "./ButtonBlue.module.scss";
+import styles from "./HeroBtn.module.scss";
 
-function ButtonBlue({ text }) {
+function HeroBtn({ text }) {
   return (
     <NavLink to="register">
       <button className={styles.btn}>{text}</button>
@@ -10,4 +10,4 @@ function ButtonBlue({ text }) {
   );
 }
 
-export default ButtonBlue;
+export default HeroBtn;

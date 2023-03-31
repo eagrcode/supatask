@@ -10,9 +10,14 @@ import { useState } from "react";
 // libraries
 import { MdDeleteForever, MdCancel, MdDone, MdEdit } from "react-icons/md";
 
-function TodoCard({ id, task, deleteTodo }) {
+// context
+import { useTheme } from "../../context/ThemeProvider";
+
+function TodoCard({ id, task, date, deleteTodo }) {
   const [editing, setEditing] = useState(false);
   const [updateTask, setUpdateTask] = useState("");
+
+  const { theme } = useTheme();
 
   const cancelEdit = () => {
     setEditing(!editing);
@@ -34,7 +39,7 @@ function TodoCard({ id, task, deleteTodo }) {
   };
 
   return (
-    <div className={styles.todo}>
+    <div className={`${styles.todo} ${styles[theme]}`}>
       {editing ? (
         <>
           <input
@@ -54,6 +59,7 @@ function TodoCard({ id, task, deleteTodo }) {
         </>
       ) : (
         <>
+          <span className={styles.date}>{date}</span>
           <p>{task}</p>
           <div className={styles.btnContainer}>
             <button onClick={() => setEditing(!editing)}>

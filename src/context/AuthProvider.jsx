@@ -8,7 +8,7 @@ export const useAuth = () => useContext(AuthContext);
 // auth component
 const AuthProvider = ({ children }) => {
   // state
-  const [loading, setLoading] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
 
   const location = useLocation();
@@ -24,7 +24,6 @@ const AuthProvider = ({ children }) => {
 
   // retrieve user
   useEffect(() => {
-    setLoading(true);
     const getUser = async () => {
       const {
         data: { user },
@@ -51,11 +50,11 @@ const AuthProvider = ({ children }) => {
     };
   }, []);
 
-  useEffect(() => {
-    if (!user && location.pathname === "/account") {
-      navigate("/register");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!user && location.pathname === "/account") {
+  //     navigate("/register");
+  //   }
+  // }, []);
 
   return (
     <AuthContext.Provider value={{ user, loading, login, signOut }}>

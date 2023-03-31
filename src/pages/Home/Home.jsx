@@ -6,7 +6,7 @@ import { useAuth } from "../../context/AuthProvider";
 import { useTheme } from "../../context/ThemeProvider";
 
 // components
-import { ButtonBlue } from "../../components";
+import { HeroBtn } from "../../components";
 
 function Home() {
   const { user, loading } = useAuth();
@@ -20,7 +20,7 @@ function Home() {
             React & Supabase <span>CRUD</span> app
           </h1>
           <p>Supatask is a simple tool designed to keep track of your daily tasks.</p>
-          <ButtonBlue text={"Get Started"} />
+          <HeroBtn text={"Get Started"} />
         </div>
       </main>
     );
@@ -29,11 +29,7 @@ function Home() {
   return (
     <main className={`${styles.main} ${styles[theme]}`}>
       <h1>Supatask</h1>
-      {user ? (
-        <p>Welcome, {user.user_metadata.first_name}</p>
-      ) : (
-        <p>Welcome to the workout tracker</p>
-      )}
+      <p>Welcome, {user.user_metadata.first_name}</p>
     </main>
   );
 }

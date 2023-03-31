@@ -4,22 +4,17 @@
   position: relative;
   align-items: center;
   min-height: calc(100vh - 4rem);
+
+  &.dark {
+    background-color: var(--primary-bg-dark);
+    color: var(--primary-text-dark);
+  }
+
+  &.light {
+    background-color: var(--primary-bg-light);
+    color: var(--primary-text-light);
+  }
 }
-
-// .modal {
-//   position: absolute;
-//   background-color: hsl(0, 0%, 50%, 0.9);
-//   height: 100%;
-//   width: 100%;
-
-//   justify-content: center;
-//   align-items: center;
-//   display: none;
-
-//   &.open {
-//     display: flex;
-//   }
-// }
 
 .form {
   display: flex;
@@ -64,5 +59,3 @@
   flex-direction: column;
   gap: 1rem;
 }
-
-

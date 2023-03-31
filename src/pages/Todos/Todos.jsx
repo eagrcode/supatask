@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../../supabaseClient";
 import { useAuth } from "../../context/AuthProvider";
+import { useTheme } from "../../context/ThemeProvider";
 
 // styles
 import styles from "./Todos.module.scss";
@@ -14,8 +15,11 @@ function Todo() {
   const [task, setTask] = useState("");
   const { user } = useAuth();
 
+  // theme provider
+  const { theme } = useTheme();
+
   useEffect(() => {
-    // listen to changes in databae and update state
+    // listen to changes in database and update state
     const subscribe = supabase
       .channel("custom-all-channel")
       .on("postgres_changes", { event: "*", schema: "public", table: "todos" }, (payload) => {
@@ -44,10 +48,6 @@ function Todo() {
     getTodos();
   }, []);
 
-  // useEffect(() => {
-  //   setTodos([...todos].sort((a, b) => a.id - b.id));
-  // }, [todos.length]);
-
   const getTodos = async () => {
     try {
       const { data, error } = await supabase
@@ -72,6 +72,7 @@ function Todo() {
       const updates = {
         user_id: user?.id,
         task: task,
+        inserted_at: new Date(),
       };
 
       let { error } = await supabase.from("todos").upsert(updates).select();
@@ -91,7 +92,7 @@ function Todo() {
 
   return (
     <>
-      <div className={styles.container}>
+      <div className={`${styles.container} ${styles[theme]}`}>
         <h1>My Todos</h1>
         <div className={styles.todoContainer}>
           <div className={styles.addTodo}>
@@ -104,6 +105,7 @@ function Todo() {
                 key={todo.id}
                 id={todo.id}
                 task={todo.task}
+                date={todo.inserted_at}
                 deleteTodo={deleteTodo}
                 index={index}
               />

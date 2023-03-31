@@ -1,4 +1,6 @@
 :root {
+  /* COLORS */
+
   /* dark theme */
   --primary-bg-dark: hsl(0, 0%, 10%);
   --primary-text-dark: hsl(270, 5%, 90%);
@@ -11,6 +13,9 @@
 
   /* accents */
   --accent-color: hsl(270, 90%, 30%);
+
+  --nav-height: 4rem;
+  --nav-height-mob: 3.5rem;
 }
 
 /* --primary-bg-color: hsl(220, 30%, 15%); */

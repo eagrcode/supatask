@@ -1,1 +1,2 @@
-export { default as ButtonBlue } from "./Buttons/ButtonBlue/ButtonBlue";
+export { default as HeroBtn } from "./Buttons/HeroBtn/HeroBtn";
+export { default as Burger } from "./Burger/Burger";
