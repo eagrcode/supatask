@@ -42,6 +42,7 @@ function TodoCard({ id, task, date, deleteTodo }) {
     <div className={`${styles.todo} ${styles[theme]}`}>
       {editing ? (
         <>
+          <span className={styles.date}>{date}</span>
           <input
             type="text"
             value={updateTask || ""}

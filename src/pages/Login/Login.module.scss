@@ -1,8 +1,10 @@
 .main {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 4rem);
+  height: calc(100svh - var(--nav-height-mob));
+  gap: 3rem;
 
   &.dark {
     background-color: var(--primary-bg-dark);
@@ -15,10 +17,16 @@
   }
 }
 
+.h1 {
+  font-size: 2rem;
+  text-align: center;
+}
+
 .form {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding: 1rem;
   gap: 1rem;
   width: 100%;
@@ -29,8 +37,25 @@
   font-size: 1.6rem;
 }
 
+.inputRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  gap: 5px;
+  border-radius: 3px;
+
+  &.dark {
+    background-color: hsl(0, 0%, 20%);
+  }
+
+  &.light {
+    background-color: hsl(270, 5%, 80%);
+  }
+}
+
 .input {
-  padding: 0.5rem;
   width: 100%;
   font-size: 1.2rem;
   outline-color: var(--accent-color);
@@ -67,5 +92,17 @@ input:-webkit-autofill:focus {
 
   &:hover {
     background-color: hsl(270, 90%, 25%);
+  }
+}
+
+.link {
+  text-decoration: underline;
+
+  &.dark {
+    color: var(--primary-text-dark);
+  }
+
+  &.light {
+    color: var(--primary-text-light);
   }
 }

@@ -97,7 +97,7 @@ function Todo() {
         <div className={styles.todoContainer}>
           <div className={styles.addTodo}>
             <input type="text" value={task || ""} onChange={(e) => setTask(e.target.value)} />
-            <button onClick={addTodo}>Add Todo</button>
+            <button onClick={addTodo}>Add</button>
           </div>
           <div className={styles.todoList}>
             {sortedTodos.map((todo, index) => (
