@@ -1,5 +1,6 @@
 // react
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 // supabase client
 import { supabase } from "../../supabaseClient";
@@ -9,6 +10,9 @@ import styles from "./Register.module.scss";
 
 // context
 import { useTheme } from "../../context/ThemeProvider";
+
+// icons
+import { MdEmail, MdLock } from "react-icons/md";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -40,43 +44,60 @@ function Register() {
   return (
     <>
       <main className={`${styles.main} ${styles[theme]}`}>
+        <h1 className={styles.h1}>Create a Supatask account</h1>
         <form className={styles.form} onSubmit={signUpUser}>
-          <span className={styles.formHeader}>Create an account</span>
-          <input
-            type="text"
-            value={firstName}
-            name="first-name"
-            onChange={(e) => setFirstName(e.target.value)}
-            className={`${styles.input} ${styles[theme]}`}
-            placeholder="First name"
-          />
-          <input
-            type="text"
-            value={lastName}
-            name="last-name"
-            onChange={(e) => setLastName(e.target.value)}
-            className={`${styles.input} ${styles[theme]}`}
-            placeholder="Last name"
-          />
-          <input
-            type="email"
-            value={email}
-            name="email"
-            onChange={(e) => setEmail(e.target.value)}
-            className={`${styles.input} ${styles[theme]}`}
-            placeholder="Email address"
-          />
-          <input
-            type="password"
-            value={password}
-            name="password"
-            onChange={(e) => setPassword(e.target.value)}
-            className={`${styles.input} ${styles[theme]}`}
-            placeholder="Password"
-          />
+          <p>Sign up with your name, email and a password.</p>
+          <div className={`${styles.inputRow} ${styles[theme]}`}>
+            <input
+              type="text"
+              value={firstName}
+              name="first-name"
+              onChange={(e) => setFirstName(e.target.value)}
+              className={`${styles.input} ${styles[theme]}`}
+              placeholder="First name"
+            />
+          </div>
+          <div className={`${styles.inputRow} ${styles[theme]}`}>
+            <input
+              type="text"
+              value={lastName}
+              name="last-name"
+              onChange={(e) => setLastName(e.target.value)}
+              className={`${styles.input} ${styles[theme]}`}
+              placeholder="Last name"
+            />
+          </div>
+          <div className={`${styles.inputRow} ${styles[theme]}`}>
+            <MdEmail size={25} />
+            <input
+              type="email"
+              value={email}
+              name="email"
+              onChange={(e) => setEmail(e.target.value)}
+              className={`${styles.input} ${styles[theme]}`}
+              placeholder="Email address"
+            />
+          </div>
+          <div className={`${styles.inputRow} ${styles[theme]}`}>
+            <MdLock size={25} />
+            <input
+              type="password"
+              value={password}
+              name="password"
+              onChange={(e) => setPassword(e.target.value)}
+              className={`${styles.input} ${styles[theme]}`}
+              placeholder="Password"
+            />
+          </div>
           <button className={styles.button} type="submit">
             Submit
           </button>
+          <p>
+            Already have an account?{" "}
+            <Link className={`${styles.link} ${styles[theme]}`} to="/login">
+              Log in
+            </Link>
+          </p>
         </form>
       </main>
     </>

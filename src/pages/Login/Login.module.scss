@@ -5,6 +5,7 @@
   align-items: center;
   height: calc(100svh - var(--nav-height-mob));
   gap: 3rem;
+  padding: var(--padding-mob);
 
   &.dark {
     background-color: var(--primary-bg-dark);
@@ -27,7 +28,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
   gap: 1rem;
   width: 100%;
   max-width: 500px;
@@ -83,7 +83,7 @@ input:-webkit-autofill:focus {
   cursor: pointer;
   width: 100%;
   padding: 10px 0;
-  border-radius: 8px;
+  border-radius: 3px;
   font-size: 1.2rem;
   font-weight: 600;
   border: transparent;
