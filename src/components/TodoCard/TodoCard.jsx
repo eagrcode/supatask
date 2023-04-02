@@ -61,14 +61,16 @@ function TodoCard({ id, task, date, deleteTodo }) {
       ) : (
         <>
           <span className={styles.date}>{date}</span>
-          <p>{task}</p>
-          <div className={styles.btnContainer}>
-            <button onClick={() => setEditing(!editing)}>
-              <MdEdit className={styles.icon} size={25} />
-            </button>
-            <button onClick={() => deleteTodo(id)}>
-              <MdDeleteForever className={styles.icon} size={25} />
-            </button>
+          <div className={styles.todoBtm}>
+            <p>{task}</p>
+            <div className={styles.btnContainer}>
+              <button onClick={() => setEditing(!editing)}>
+                <MdEdit className={styles.icon} size={25} />
+              </button>
+              <button onClick={() => deleteTodo(id)}>
+                <MdDeleteForever className={styles.icon} size={25} />
+              </button>
+            </div>
           </div>
         </>
       )}

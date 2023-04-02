@@ -41,7 +41,7 @@ function Login() {
         <form className={styles.form} onSubmit={signInUser}>
           <p>Enter your email address and password.</p>
           <div className={`${styles.inputRow} ${styles[theme]}`}>
-            <MdEmail size={25} />
+            <MdEmail className={styles.icon} size={25} />
             <input
               type="text"
               value={email}
@@ -52,7 +52,7 @@ function Login() {
             />
           </div>
           <div className={`${styles.inputRow} ${styles[theme]}`}>
-            <MdLock size={25} />
+            <MdLock className={styles.icon} size={25} />
             <input
               type="password"
               value={password}

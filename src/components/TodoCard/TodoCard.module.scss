@@ -1,7 +1,7 @@
 .todo {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   gap: 1rem;
   padding: 1rem;
   border-radius: 3px;
@@ -23,7 +23,13 @@
 }
 
 .date {
-  font-size: 0.8rem;
+  font-size: 10px;
+}
+
+.todoBtm {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .btnContainer {

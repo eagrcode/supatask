@@ -3,10 +3,18 @@ import { supabase } from "../../supabaseClient";
 import { useAuth } from "../../context/AuthProvider";
 import { useNavigate } from "react-router";
 
+// context
+import { useTheme } from "../../context/ThemeProvider";
+
+// styles
+import styles from "./Account.module.scss";
+
 const Account = () => {
   const [loading, setLoading] = useState(null);
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
+
+  const { theme } = useTheme();
 
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -65,30 +73,31 @@ const Account = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={updateProfile}>
-        <div>Email: {user?.email}</div>
-        <div>
-          <label htmlFor="username">First Name</label>
-          <input
-            id="username"
-            type="text"
-            value={firstName || ""}
-            onChange={(e) => setFirstName(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="website">Last Name</label>
-          <input
-            id="website"
-            type="text"
-            value={lastName || ""}
-            onChange={(e) => setLastName(e.target.value)}
-          />
-        </div>
-        <div>
-          <button disabled={loading}>Update profile</button>
-        </div>
+    <div className={`${styles.wrapper} ${styles[theme]}`}>
+      <h1 className={styles.h1}>Account info</h1>
+      <form className={styles.form} onSubmit={updateProfile}>
+        <p>{user?.email}</p>
+        <label for="first-name">First name</label>
+        <input
+          className={styles[theme]}
+          id="first-name"
+          type="text"
+          value={firstName || ""}
+          onChange={(e) => setFirstName(e.target.value)}
+          disabled={loading}
+        />
+        <label for="last-name">Last name</label>
+        <input
+          className={styles[theme]}
+          id="last-name"
+          type="text"
+          value={lastName || ""}
+          onChange={(e) => setLastName(e.target.value)}
+          disabled={loading}
+        />
+        <button className={styles.btn} disabled={loading}>
+          {loading ? "Loading..." : "Update"}
+        </button>
       </form>
     </div>
   );

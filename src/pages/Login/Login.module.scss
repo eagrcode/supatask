@@ -38,28 +38,29 @@
 }
 
 .inputRow {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 10px;
-  gap: 5px;
-  border-radius: 3px;
+}
 
-  &.dark {
-    background-color: hsl(0, 0%, 20%);
-  }
-
-  &.light {
-    background-color: hsl(270, 5%, 80%);
-  }
+.icon {
+  position: absolute;
+  left: 10px;
 }
 
 .input {
   width: 100%;
   font-size: 1.2rem;
-  outline-color: var(--accent-color);
+  outline: none;
   border: transparent;
+  border-radius: 3px;
+  padding: 10px 10px 10px 40px;
+
+  &:focus {
+    border: solid 2px var(--accent-color);
+  }
 
   &.dark {
     background-color: hsl(0, 0%, 20%);
