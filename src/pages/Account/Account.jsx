@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../../supabaseClient";
 import { useAuth } from "../../context/AuthProvider";
-import { useNavigate } from "react-router";
+import { CircularProgress, CircularProgressLabel } from "@chakra-ui/react";
+
+// components
+import { SuccessToast, ErrorToast } from "../../components";
 
 // context
 import { useTheme } from "../../context/ThemeProvider";
@@ -10,15 +13,18 @@ import { useTheme } from "../../context/ThemeProvider";
 import styles from "./Account.module.scss";
 
 const Account = () => {
+  // state
   const [loading, setLoading] = useState(null);
+  const [status, setStatus] = useState("");
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
+  const [isToast, setIsToast] = useState(false);
 
+  // context destructure
   const { theme } = useTheme();
-
   const { user } = useAuth();
-  const navigate = useNavigate();
 
+  // get user details on render
   useEffect(() => {
     getProfile();
   }, []);
@@ -51,6 +57,7 @@ const Account = () => {
     setLoading(false);
   };
 
+  // update user account details
   const updateProfile = async (e) => {
     e.preventDefault();
     try {
@@ -64,6 +71,11 @@ const Account = () => {
       let { error } = await supabase.from("profiles").upsert(updates);
       if (error) {
         console.log(error);
+        setStatus("error");
+        showToast();
+      } else {
+        setStatus("success");
+        showToast();
       }
     } catch (error) {
       console.log(error.message);
@@ -72,12 +84,21 @@ const Account = () => {
     }
   };
 
+  function showToast() {
+    setIsToast(true);
+    const timer = setTimeout(() => {
+      setIsToast(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }
+
   return (
     <div className={`${styles.wrapper} ${styles[theme]}`}>
       <h1 className={styles.h1}>Account info</h1>
       <form className={styles.form} onSubmit={updateProfile}>
         <p>{user?.email}</p>
-        <label for="first-name">First name</label>
+        <label htmlFor="first-name">First name</label>
         <input
           className={styles[theme]}
           id="first-name"
@@ -86,7 +107,7 @@ const Account = () => {
           onChange={(e) => setFirstName(e.target.value)}
           disabled={loading}
         />
-        <label for="last-name">Last name</label>
+        <label htmlFor="last-name">Last name</label>
         <input
           className={styles[theme]}
           id="last-name"
@@ -96,9 +117,10 @@ const Account = () => {
           disabled={loading}
         />
         <button className={styles.btn} disabled={loading}>
-          {loading ? "Loading..." : "Update"}
+          {loading ? <CircularProgress isIndeterminate size="30px" thickness="5px" /> : "Update"}
         </button>
       </form>
+      {status === "success" ? <SuccessToast isToast={isToast} /> : <ErrorToast isToast={isToast} />}
     </div>
   );
 };

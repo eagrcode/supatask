@@ -52,32 +52,40 @@
 
 .input {
   width: 100%;
-  font-size: 1.2rem;
   outline: none;
   border: transparent;
   border-radius: 3px;
   padding: 10px 10px 10px 40px;
 
   &:focus {
-    border: solid 2px var(--accent-color);
+    outline: solid 2px var(--accent-color);
   }
 
   &.dark {
     background-color: hsl(0, 0%, 20%);
     color: var(--primary-text-dark);
+
+    &.input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus {
+      -webkit-text-fill-color: var(--primary-text-dark) !important;
+      -webkit-box-shadow: 0 0 0px 40rem hsl(0, 0%, 20%) inset;
+      outline: solid 2px var(--accent-color);
+    }
   }
 
   &.light {
     background-color: hsl(270, 5%, 80%);
     color: var(--primary-text-light);
-  }
-}
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus {
-  -webkit-text-fill-color: var(--primary-text-light);
-  -webkit-box-shadow: 0 0 0px 40rem hsl(0, 0%, 20%) inset;
+    &.input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus {
+      -webkit-text-fill-color: var(--primary-text-light) !important;
+      -webkit-box-shadow: 0 0 0px 40rem hsl(270, 5%, 80%) inset;
+      outline: solid 2px var(--accent-color);
+    }
+  }
 }
 
 .button {
