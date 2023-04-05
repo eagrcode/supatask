@@ -16,6 +16,10 @@
     background-color: var(--primary-bg-light);
     color: var(--primary-text-light);
   }
+
+  @media (min-width: 900px) {
+    height: calc(100vh - var(--nav-height));
+  }
 }
 
 .h1 {

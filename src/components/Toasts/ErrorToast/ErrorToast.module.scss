@@ -1,15 +1,14 @@
 .toast {
-  position: fixed;
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
   bottom: 1rem;
-  background-color: black;
   border-radius: 3px;
   padding: 1rem;
-
-  transform: translateY(calc(100% + 1rem));
+  opacity: 0.1;
+  transform: scale(0);
   transition: all ease-in-out 0.2s;
 
   &.dark {
@@ -25,7 +24,8 @@
   }
 
   &.show {
-    transform: translateY(0);
+    transform: scale(1);
+    opacity: 1;
   }
 }
 

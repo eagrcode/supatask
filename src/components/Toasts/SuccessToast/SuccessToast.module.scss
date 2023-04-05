@@ -7,9 +7,8 @@
   bottom: 1rem;
   border-radius: 3px;
   padding: 1rem;
-  opacity: 0.5;
-  // transform: translateY(calc(100% + 1rem));
-  transform: scale(0.5);
+  opacity: 0.1;
+  transform: scale(0);
   transition: all ease-in-out 0.2s;
 
   &.dark {
@@ -25,7 +24,6 @@
   }
 
   &.show {
-    // transform: translateY(0);
     transform: scale(1);
     opacity: 1;
   }

@@ -32,7 +32,6 @@ const Account = () => {
 
   const getProfile = async () => {
     setLoading(true);
-
     if (user) {
       try {
         let { data, error } = await supabase
@@ -54,7 +53,6 @@ const Account = () => {
         console.log(error);
       }
     }
-
     setLoading(false);
   };
 
@@ -85,6 +83,7 @@ const Account = () => {
     }
   };
 
+  // disable submit btn for 3 secs
   function disableSubmit() {
     setBtnDisable(true);
     const timer = setTimeout(() => {
@@ -94,6 +93,7 @@ const Account = () => {
     return () => clearTimeout(timer);
   }
 
+  // show toast pop up for 3 secs
   function showToast() {
     setIsToast(true);
     const timer = setTimeout(() => {
