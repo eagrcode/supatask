@@ -16,6 +16,7 @@ const Account = () => {
   // state
   const [loading, setLoading] = useState(null);
   const [status, setStatus] = useState("");
+  const [btnDisable, setBtnDisable] = useState(false);
   const [firstName, setFirstName] = useState(null);
   const [lastName, setLastName] = useState(null);
   const [isToast, setIsToast] = useState(false);
@@ -60,8 +61,9 @@ const Account = () => {
   // update user account details
   const updateProfile = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    disableSubmit();
     try {
-      setLoading(true);
       const updates = {
         id: user?.id,
         first_name: firstName,
@@ -72,17 +74,25 @@ const Account = () => {
       if (error) {
         console.log(error);
         setStatus("error");
-        showToast();
       } else {
         setStatus("success");
-        showToast();
       }
     } catch (error) {
       console.log(error.message);
     } finally {
       setLoading(false);
+      showToast();
     }
   };
+
+  function disableSubmit() {
+    setBtnDisable(true);
+    const timer = setTimeout(() => {
+      setBtnDisable(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }
 
   function showToast() {
     setIsToast(true);
@@ -116,8 +126,8 @@ const Account = () => {
           onChange={(e) => setLastName(e.target.value)}
           disabled={loading}
         />
-        <button className={styles.btn} disabled={loading}>
-          {loading ? <CircularProgress isIndeterminate size="30px" thickness="5px" /> : "Update"}
+        <button className={styles.btn} disabled={btnDisable}>
+          {loading ? <CircularProgress isIndeterminate size="20px" thickness="5px" /> : "Update"}
         </button>
       </form>
       {status === "success" ? <SuccessToast isToast={isToast} /> : <ErrorToast isToast={isToast} />}
