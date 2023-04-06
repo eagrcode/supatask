@@ -16,6 +16,10 @@
     background-color: var(--primary-bg-light);
     color: var(--primary-text-light);
   }
+
+  @media (min-width: 900px) {
+    min-height: calc(100vh - var(--nav-height));
+  }
 }
 
 .todoContainer {
@@ -23,6 +27,7 @@
   flex-direction: column;
   gap: 1rem;
   width: 100%;
+  max-width: 500px;
 }
 
 .addTodo {
