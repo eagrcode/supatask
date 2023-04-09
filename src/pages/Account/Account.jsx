@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../../supabaseClient";
 import { useAuth } from "../../context/AuthProvider";
-import { CircularProgress, CircularProgressLabel } from "@chakra-ui/react";
+import PulseLoader from "react-spinners/PulseLoader";
 
 // components
 import { SuccessToast, ErrorToast } from "../../components";
@@ -25,6 +25,11 @@ const Account = () => {
   const { theme } = useTheme();
   const { user } = useAuth();
 
+  const sleep = (ms) =>
+    new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+
   // get user details on render
   useEffect(() => {
     getProfile();
@@ -34,6 +39,7 @@ const Account = () => {
     setLoading(true);
     if (user) {
       try {
+        await sleep(1000);
         let { data, error } = await supabase
           .from("profiles")
           .select(`first_name, last_name`)
@@ -62,6 +68,7 @@ const Account = () => {
     setLoading(true);
     disableSubmit();
     try {
+      await sleep(500);
       const updates = {
         id: user?.id,
         first_name: firstName,
@@ -127,7 +134,7 @@ const Account = () => {
           disabled={loading}
         />
         <button className={styles.btn} disabled={btnDisable}>
-          {loading ? <CircularProgress isIndeterminate size="20px" thickness="5px" /> : "Update"}
+          {loading ? <PulseLoader color="var(--primary-text-dark)" size={8} /> : "Update"}
         </button>
       </form>
       {status === "success" ? <SuccessToast isToast={isToast} /> : <ErrorToast isToast={isToast} />}

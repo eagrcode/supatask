@@ -1,0 +1,17 @@
+.todo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  height: 85px;
+
+  &.dark {
+    background-color: hsla(0, 0%, 20%, 0.9);
+    color: var(--primary-text-dark);
+  }
+
+  &.light {
+    background-color: hsla(270, 5%, 80%, 0.9);
+    color: var(--primary-text-light);
+  }
+}

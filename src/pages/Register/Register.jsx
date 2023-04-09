@@ -74,7 +74,7 @@ function Register() {
               value={email}
               name="email"
               onChange={(e) => setEmail(e.target.value)}
-              className={`${styles.input} ${styles[theme]}`}
+              className={`${styles.input} ${styles.hasIcon} ${styles[theme]}`}
               placeholder="Email address"
             />
           </div>
@@ -85,7 +85,7 @@ function Register() {
               value={password}
               name="password"
               onChange={(e) => setPassword(e.target.value)}
-              className={`${styles.input} ${styles[theme]}`}
+              className={`${styles.input} ${styles.hasIcon} ${styles[theme]}`}
               placeholder="Password"
             />
           </div>

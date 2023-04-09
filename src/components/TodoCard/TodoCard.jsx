@@ -45,14 +45,8 @@ function TodoCard({ id, task, date, deleteTodo }) {
     <div className={`${styles.todo} ${styles[theme]}`}>
       {editing ? (
         <>
-          <span className={styles.date}>{date}</span>
-          <div className={styles.todoBtm}>
-            <input
-              type="text"
-              value={updateTask || ""}
-              onChange={(e) => setUpdateTask(e.target.value)}
-              placeholder={task}
-            />
+          <div className={styles.todoTop}>
+            <span className={styles.date}>{date}</span>
             <div className={styles.btnContainer}>
               <button onClick={cancelEdit}>
                 <MdCancel className={styles.icon} size={25} />
@@ -62,24 +56,21 @@ function TodoCard({ id, task, date, deleteTodo }) {
               </button>
             </div>
           </div>
+
+          <div className={styles.todoBtm}>
+            <input
+              className={`${styles.input} ${styles[theme]}`}
+              type="text"
+              value={updateTask || ""}
+              onChange={(e) => setUpdateTask(e.target.value)}
+              placeholder={task}
+            />
+          </div>
         </>
       ) : (
         <>
-          <span className={styles.date}>{date}</span>
-          <div className={styles.todoBtm}>
-            <div className={styles.todoText}>
-              {isLoading ? (
-                <PulseLoader
-                  loading={isLoading}
-                  size={5}
-                  aria-label="Loading Spinner"
-                  data-testid="loader"
-                />
-              ) : (
-                <p>{task || undefined}</p>
-              )}
-            </div>
-
+          <div className={styles.todoTop}>
+            <p className={styles.date}>{date}</p>
             <div className={styles.btnContainer}>
               <button onClick={() => setEditing(!editing)}>
                 <MdEdit className={styles.icon} size={25} />
@@ -88,6 +79,19 @@ function TodoCard({ id, task, date, deleteTodo }) {
                 <MdDeleteForever className={styles.icon} size={25} />
               </button>
             </div>
+          </div>
+
+          <div className={styles.todoBtm}>
+            {isLoading ? (
+              <PulseLoader
+                loading={isLoading}
+                size={5}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              />
+            ) : (
+              <p>{task || undefined}</p>
+            )}
           </div>
         </>
       )}

@@ -52,11 +52,14 @@
 
 .input {
   width: 100%;
-
   outline: none;
   border: transparent;
   border-radius: 3px;
-  padding: 10px 10px 10px 40px;
+  padding: 10px;
+
+  &.hasIcon {
+    padding: 10px 10px 10px 40px;
+  }
 
   &:focus {
     outline: solid 2px var(--accent-color);

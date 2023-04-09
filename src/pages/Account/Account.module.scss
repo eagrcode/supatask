@@ -36,13 +36,14 @@
 
   input {
     background-color: transparent;
-    border: none;
-    border: solid 1px gray;
+    outline: none;
+
+    border: solid 2px rgba(128, 128, 128, 0.5);
     padding: 10px;
     border-radius: 3px;
 
     &:focus {
-      outline: 2px solid var(--accent-color);
+      border: solid 2px var(--accent-color);
     }
 
     &.dark {

@@ -3,13 +3,8 @@
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
-  padding: 1rem;
+  padding: 10px;
   border-radius: 3px;
-
-  input {
-    width: 100%;
-    overflow: hidden;
-  }
 
   &.dark {
     background-color: hsla(0, 0%, 20%, 0.9);
@@ -22,20 +17,14 @@
   }
 }
 
-.date {
-  font-size: 10px;
-}
-
-.todoBtm {
+.todoTop {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 5px;
 }
 
-.todoText {
-  width: 100%;
-  overflow: hidden;
+.date {
+  font-size: 0.8rem;
 }
 
 .btnContainer {
@@ -55,5 +44,22 @@
     &:hover {
       opacity: 1;
     }
+  }
+}
+
+.input {
+  width: 100%;
+  overflow: hidden;
+  border: transparent;
+  outline: transparent;
+
+  &.dark {
+    background-color: hsla(0, 0%, 10%, 0.9);
+    color: var(--primary-text-dark);
+  }
+
+  &.light {
+    background-color: hsla(270, 5%, 80%, 0.9);
+    color: var(--primary-text-light);
   }
 }

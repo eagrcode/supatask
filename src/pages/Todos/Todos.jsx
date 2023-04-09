@@ -3,16 +3,20 @@ import { supabase } from "../../supabaseClient";
 import { useAuth } from "../../context/AuthProvider";
 import { useTheme } from "../../context/ThemeProvider";
 
+// icons
+import { MdAdd } from "react-icons/md";
+
 // styles
 import styles from "./Todos.module.scss";
 
 // components
-import TodoCard from "../../components/TodoCard/TodoCard";
+import { TodoCard, SkeletonTodoCard } from "../../components";
 
 function Todo() {
   // state
   const [todos, setTodos] = useState([]);
   const [task, setTask] = useState("");
+  const [isLoading, setIsLoading] = useState(null);
   const { user } = useAuth();
 
   // theme provider
@@ -44,12 +48,20 @@ function Todo() {
     };
   }, []);
 
+  const sleep = (ms) =>
+    new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+
+  // fetch todos on render
   useEffect(() => {
     getTodos();
   }, []);
 
   const getTodos = async () => {
+    setIsLoading(true);
     try {
+      await sleep(500);
       const { data, error } = await supabase
         .from("todos")
         .select("id, task, inserted_at")
@@ -63,6 +75,7 @@ function Todo() {
     } catch (error) {
       console.log(error.message);
     }
+    setIsLoading(false);
   };
 
   const sortedTodos = [...todos].sort((a, b) => b.id - a.id);
@@ -95,22 +108,35 @@ function Todo() {
       <div className={`${styles.container} ${styles[theme]}`}>
         <h1>My Todos</h1>
         <div className={styles.todoContainer}>
-          <div className={styles.addTodo}>
-            <input type="text" value={task || ""} onChange={(e) => setTask(e.target.value)} />
-            <button onClick={addTodo}>Add</button>
+          <div className={`${styles.addTodo} ${styles[theme]}`}>
+            <input
+              className={`${styles.input} ${styles[theme]}`}
+              type="text"
+              value={task || ""}
+              placeholder="Start creating a supatask!"
+              onChange={(e) => setTask(e.target.value)}
+            />
+            <button onClick={addTodo}>
+              <MdAdd size={30} />
+            </button>
           </div>
-          <div className={styles.todoList}>
-            {sortedTodos.map((todo, index) => (
-              <TodoCard
-                key={todo.id}
-                id={todo.id}
-                task={todo.task}
-                date={todo.inserted_at}
-                deleteTodo={deleteTodo}
-                index={index}
-              />
-            ))}
-          </div>
+          {isLoading ? (
+            <div className={styles.todoList}>
+              <SkeletonTodoCard isLoading={isLoading} />
+            </div>
+          ) : (
+            <div className={styles.todoList}>
+              {sortedTodos.map((todo) => (
+                <TodoCard
+                  key={todo.id}
+                  id={todo.id}
+                  task={todo.task}
+                  date={todo.inserted_at}
+                  deleteTodo={deleteTodo}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </>
