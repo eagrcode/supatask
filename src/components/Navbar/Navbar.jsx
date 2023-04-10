@@ -48,6 +48,15 @@ function Navbar() {
           className={isOpen ? `${styles.listBG} ${styles[theme]} ${styles.open}` : styles.listBG}
         >
           <ul className={isOpen ? `${styles.ul} ${styles[theme]} ${styles.open}` : styles.ul}>
+            <li className={styles.li}>
+              <NavLink
+                onClick={isOpen ? () => setIsOpen(!isOpen) : undefined}
+                className={`${styles.link} ${styles[theme]}`}
+                to="/"
+              >
+                Home
+              </NavLink>
+            </li>
             {user ? (
               <>
                 <li className={styles.li}>

@@ -56,6 +56,10 @@
   width: 100%;
   border-radius: 3px;
 
+  &:hover {
+    outline: solid 2px var(--accent-color);
+  }
+
   &:focus {
     outline: solid 2px var(--accent-color);
   }
