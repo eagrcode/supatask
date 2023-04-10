@@ -15,17 +15,21 @@ import PulseLoader from "react-spinners/PulseLoader";
 import { useTheme } from "../../context/ThemeProvider";
 
 function TodoCard({ id, task, date, deleteTodo }) {
+  // state
   const [isLoading, setIsLoading] = useState(null);
   const [editing, setEditing] = useState(false);
   const [updateTask, setUpdateTask] = useState("");
 
+  // context destructure
   const { theme } = useTheme();
 
+  // cancel edit todo mode
   const cancelEdit = () => {
     setEditing(!editing);
     setUpdateTask("");
   };
 
+  // update todo
   const updateTodo = async (id) => {
     setIsLoading(true);
     setEditing(!editing);

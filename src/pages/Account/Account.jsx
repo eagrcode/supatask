@@ -1,6 +1,13 @@
+// react
 import { useState, useEffect } from "react";
+
+// supabase client
 import { supabase } from "../../supabaseClient";
+
+// context
 import { useAuth } from "../../context/AuthProvider";
+
+// loading spinners
 import PulseLoader from "react-spinners/PulseLoader";
 
 // components
@@ -25,6 +32,7 @@ const Account = () => {
   const { theme } = useTheme();
   const { user } = useAuth();
 
+  // delay data fetching
   const sleep = (ms) =>
     new Promise((resolve) => {
       setTimeout(resolve, ms);
@@ -39,7 +47,7 @@ const Account = () => {
     setLoading(true);
     if (user) {
       try {
-        await sleep(1000);
+        await sleep(500);
         let { data, error } = await supabase
           .from("profiles")
           .select(`first_name, last_name`)
@@ -95,7 +103,7 @@ const Account = () => {
     setBtnDisable(true);
     const timer = setTimeout(() => {
       setBtnDisable(false);
-    }, 3000);
+    }, 3500);
 
     return () => clearTimeout(timer);
   }

@@ -1,5 +1,10 @@
+// react
 import { useState, useEffect } from "react";
+
+// supabase client
 import { supabase } from "../../supabaseClient";
+
+// context
 import { useAuth } from "../../context/AuthProvider";
 import { useTheme } from "../../context/ThemeProvider";
 
@@ -22,8 +27,8 @@ function Todo() {
   // theme provider
   const { theme } = useTheme();
 
+  // listen to changes in database and update state
   useEffect(() => {
-    // listen to changes in database and update state
     const subscribe = supabase
       .channel("custom-all-channel")
       .on("postgres_changes", { event: "*", schema: "public", table: "todos" }, (payload) => {
@@ -48,6 +53,7 @@ function Todo() {
     };
   }, []);
 
+  // delay data fetching
   const sleep = (ms) =>
     new Promise((resolve) => {
       setTimeout(resolve, ms);
@@ -78,8 +84,10 @@ function Todo() {
     setIsLoading(false);
   };
 
+  // sort todos by most recent
   const sortedTodos = [...todos].sort((a, b) => b.id - a.id);
 
+  // add new todo
   const addTodo = async (e) => {
     try {
       const updates = {
@@ -99,6 +107,7 @@ function Todo() {
     setTask("");
   };
 
+  // delete todo
   const deleteTodo = async (id) => {
     const { data, error } = await supabase.from("todos").delete().eq("id", id);
   };
