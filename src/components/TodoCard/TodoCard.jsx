@@ -23,6 +23,11 @@ function TodoCard({ id, task, date, deleteTodo }) {
   // context destructure
   const { theme } = useTheme();
 
+  const sleep = (ms) =>
+    new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+
   // cancel edit todo mode
   const cancelEdit = () => {
     setEditing(!editing);
@@ -42,6 +47,7 @@ function TodoCard({ id, task, date, deleteTodo }) {
       console.log(error.message);
     }
     setUpdateTask("");
+    await sleep(500);
     setIsLoading(false);
   };
 
@@ -87,12 +93,15 @@ function TodoCard({ id, task, date, deleteTodo }) {
 
           <div className={styles.todoBtm}>
             {isLoading ? (
-              <PulseLoader
-                loading={isLoading}
-                size={5}
-                aria-label="Loading Spinner"
-                data-testid="loader"
-              />
+              <div className={styles.pulse}>
+                <PulseLoader
+                  loading={isLoading}
+                  size={5}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                  color={theme == "dark" ? "white" : "black"}
+                />
+              </div>
             ) : (
               <p>{task || undefined}</p>
             )}
