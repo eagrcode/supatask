@@ -14,11 +14,12 @@ import PulseLoader from "react-spinners/PulseLoader";
 // context
 import { useTheme } from "../../context/ThemeProvider";
 
-function TodoCard({ id, task, date, deleteTodo }) {
+function TodoCard({ id, task, date, deleteTodo, is_complete }) {
   // state
   const [isLoading, setIsLoading] = useState(null);
   const [editing, setEditing] = useState(false);
   const [updateTask, setUpdateTask] = useState("");
+  const [isComplete, setIsComplete] = useState(is_complete);
 
   // context destructure
   const { theme } = useTheme();
@@ -49,6 +50,32 @@ function TodoCard({ id, task, date, deleteTodo }) {
     setUpdateTask("");
     await sleep(500);
     setIsLoading(false);
+  };
+
+  // check as complete
+  const checkComplete = async (id) => {
+    setIsComplete(true);
+    try {
+      let { error } = await supabase.from("todos").update({ is_complete: true }).eq("id", id);
+      if (error) {
+        console.log(error);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  // uncheck complete
+  const uncheckComplete = async (id) => {
+    setIsComplete(false);
+    try {
+      let { error } = await supabase.from("todos").update({ is_complete: false }).eq("id", id);
+      if (error) {
+        console.log(error);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -92,6 +119,7 @@ function TodoCard({ id, task, date, deleteTodo }) {
           </div>
 
           <div className={styles.todoBtm}>
+            <button onClick={() => toggleComplete(id)}>complete</button>
             {isLoading ? (
               <div className={styles.pulse}>
                 <PulseLoader
@@ -103,7 +131,10 @@ function TodoCard({ id, task, date, deleteTodo }) {
                 />
               </div>
             ) : (
-              <p>{task || undefined}</p>
+              <>
+                <p>{task || undefined}</p>
+                <p>{isComplete.toString()}</p>
+              </>
             )}
           </div>
         </>

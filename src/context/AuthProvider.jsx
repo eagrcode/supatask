@@ -14,8 +14,6 @@ const AuthProvider = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  console.log(loading);
-
   // login
   const login = async (email, password) =>
     await supabase.auth.signInWithPassword({ email, password });

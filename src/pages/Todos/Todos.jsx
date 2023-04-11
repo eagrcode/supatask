@@ -66,11 +66,11 @@ function Todo() {
 
   const getTodos = async () => {
     setIsLoading(true);
+    await sleep(500);
     try {
-      await sleep(500);
       const { data, error } = await supabase
         .from("todos")
-        .select("id, task, inserted_at")
+        .select("id, task, is_complete, inserted_at")
         .order("inserted_at", { ascending: false });
       if (error) {
         console.log(error);
@@ -109,7 +109,7 @@ function Todo() {
 
   // delete todo
   const deleteTodo = async (id) => {
-    const { data, error } = await supabase.from("todos").delete().eq("id", id);
+    const { error } = await supabase.from("todos").delete().eq("id", id);
   };
 
   return (
@@ -134,17 +134,39 @@ function Todo() {
               <SkeletonTodoCard isLoading={isLoading} />
             </div>
           ) : (
-            <div className={styles.todoList}>
-              {sortedTodos.map((todo) => (
-                <TodoCard
-                  key={todo.id}
-                  id={todo.id}
-                  task={todo.task}
-                  date={todo.inserted_at}
-                  deleteTodo={deleteTodo}
-                />
-              ))}
-            </div>
+            <>
+              <p>active supatasks: {todos.filter((todo) => todo.is_complete === false).length}</p>
+              <div className={styles.todoList}>
+                {sortedTodos
+                  .filter((todo) => todo.is_complete === false)
+                  .map((todo) => (
+                    <TodoCard
+                      key={todo.id}
+                      id={todo.id}
+                      task={todo.task}
+                      date={todo.inserted_at}
+                      deleteTodo={deleteTodo}
+                      is_complete={todo.is_complete}
+                    />
+                  ))}
+              </div>
+              <p>completed supatasks: {todos.filter((todo) => todo.is_complete === true).length}</p>
+              <div className={styles.todoList}>
+                {sortedTodos.map(
+                  (todo) =>
+                    todo.is_complete && (
+                      <TodoCard
+                        key={todo.id}
+                        id={todo.id}
+                        task={todo.task}
+                        date={todo.inserted_at}
+                        deleteTodo={deleteTodo}
+                        is_complete={todo.is_complete}
+                      />
+                    )
+                )}
+              </div>
+            </>
           )}
         </div>
       </div>
