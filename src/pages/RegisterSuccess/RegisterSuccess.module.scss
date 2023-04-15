@@ -1,0 +1,23 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  height: calc(100svh - var(--nav-height-mob));
+  padding: var(--padding-mob);
+
+  &.dark {
+    background-color: var(--primary-bg-dark);
+    color: var(--primary-text-dark);
+  }
+
+  &.light {
+    background-color: var(--primary-bg-light);
+    color: var(--primary-text-light);
+  }
+
+  @media (min-width: 900px) {
+    height: calc(100vh - var(--nav-height));
+  }
+}

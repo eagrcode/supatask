@@ -12,10 +12,15 @@ import { useTheme } from "../../context/ThemeProvider";
 // icons
 import { MdEmail, MdLock } from "react-icons/md";
 
+// loading spinners
+import PulseLoader from "react-spinners/PulseLoader";
+
 function Login() {
   // state
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
 
   // destructure context
   const { login } = useAuth();
@@ -23,15 +28,32 @@ function Login() {
 
   const navigate = useNavigate();
 
+  // delay function
+  const sleep = (ms) =>
+    new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+
+  // sign in user
   async function signInUser(e) {
     e.preventDefault();
+    setIsLoading(true);
+    await sleep(500);
+
     try {
       const { data, error } = await login(email, password);
       console.log(data);
+      if (error) {
+        console.log(error);
+        setErrorMessage("Invalid log in credentials");
+      } else {
+        navigate("/");
+      }
     } catch (error) {
-      alert(error);
+      console.log(error.message);
     }
-    navigate("/");
+
+    setIsLoading(false);
   }
 
   return (
@@ -49,6 +71,7 @@ function Login() {
               onChange={(e) => setEmail(e.target.value)}
               className={`${styles.input} ${styles[theme]}`}
               placeholder="Email"
+              required
             />
           </div>
           <div className={`${styles.inputRow} ${styles[theme]}`}>
@@ -60,10 +83,11 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
               className={`${styles.input} ${styles[theme]}`}
               placeholder="Password"
+              required
             />
           </div>
           <button className={styles.button} type="submit">
-            Log in
+            {isLoading ? <PulseLoader color="var(--primary-text-dark)" size={8} /> : "Log in"}
           </button>
           <p>
             Don't have an account yet?{" "}
@@ -71,6 +95,7 @@ function Login() {
               Sign up
             </Link>
           </p>
+          <p style={{ color: "red" }}>{errorMessage}</p>
         </form>
       </main>
     </>
