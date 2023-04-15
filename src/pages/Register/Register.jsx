@@ -1,6 +1,6 @@
 // react
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // supabase client
 import { supabase } from "../../supabaseClient";
@@ -14,31 +14,55 @@ import { useTheme } from "../../context/ThemeProvider";
 // icons
 import { MdEmail, MdLock } from "react-icons/md";
 
+// loading spinners
+import PulseLoader from "react-spinners/PulseLoader";
+
 function Register() {
+  // state
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [isLoading, setIsLoading] = useState(null);
 
+  // theme context
   const { theme } = useTheme();
 
-  async function signUpUser(e) {
-    e.preventDefault();
+  const navigate = useNavigate();
 
-    const { error } = await supabase.auth.signUp({
-      email: email,
-      password: password,
-      options: {
-        data: {
-          first_name: firstName,
-          last_name: lastName,
-        },
-      },
+  // delay data fetching
+  const sleep = (ms) =>
+    new Promise((resolve) => {
+      setTimeout(resolve, ms);
     });
 
-    if (error) {
-      throw error;
+  // register new user
+  async function signUpUser(e) {
+    e.preventDefault();
+    setIsLoading(true);
+    await sleep(500);
+
+    try {
+      const { error } = await supabase.auth.signUp({
+        email: email,
+        password: password,
+        options: {
+          data: {
+            first_name: firstName,
+            last_name: lastName,
+          },
+        },
+      });
+      if (error) {
+        console.log(error);
+      } else {
+        navigate("/register-success");
+      }
+    } catch (error) {
+      console.log(error.message);
     }
+
+    setIsLoading(false);
   }
 
   return (
@@ -89,8 +113,8 @@ function Register() {
               placeholder="Password"
             />
           </div>
-          <button className={styles.button} type="submit">
-            Submit
+          <button className={styles.button}>
+            {isLoading ? <PulseLoader color="var(--primary-text-dark)" size={8} /> : "Submit"}
           </button>
           <p>
             Already have an account?{" "}

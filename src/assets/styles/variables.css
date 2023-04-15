@@ -2,9 +2,9 @@
   /* COLORS */
 
   /* dark theme */
-  --primary-bg-dark: hsl(0, 0%, 10%);
+  --primary-bg-dark: hsl(270, 5%, 7%);
   --primary-text-dark: hsl(270, 5%, 90%);
-  --nav-bg-dark: hsl(0, 0%, 10%);
+  --nav-bg-dark: hsl(270, 5%, 7%);
 
   /* light theme */
   --primary-bg-light: hsl(270, 5%, 90%);
@@ -12,7 +12,7 @@
   --nav-bg-light: hsl(270, 5%, 90%);
 
   /* accents */
-  --accent-color: hsl(270, 90%, 30%);
+  --accent-color: hsl(270, 100%, 30%);
 
   /* SPACING */
   --nav-height: 4rem;

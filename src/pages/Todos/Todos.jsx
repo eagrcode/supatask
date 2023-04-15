@@ -21,7 +21,7 @@ function Todo() {
   // state
   const [todos, setTodos] = useState([]);
   const [task, setTask] = useState("");
-  const [isLoading, setIsLoading] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const { user } = useAuth();
 
   // theme provider
@@ -65,7 +65,7 @@ function Todo() {
   }, []);
 
   const getTodos = async () => {
-    setIsLoading(true);
+    // setIsLoading(true);
     await sleep(500);
     try {
       const { data, error } = await supabase
@@ -112,8 +112,8 @@ function Todo() {
     const { error } = await supabase.from("todos").delete().eq("id", id);
   };
 
-  return (
-    <>
+  if (isLoading) {
+    return (
       <div className={`${styles.container} ${styles[theme]}`}>
         <h1>My Todos</h1>
         <div className={styles.todoContainer}>
@@ -129,48 +129,64 @@ function Todo() {
               <MdAdd size={30} />
             </button>
           </div>
-          {isLoading ? (
-            <div className={styles.todoList}>
-              <SkeletonTodoCard isLoading={isLoading} />
-            </div>
-          ) : (
-            <>
-              <p>active supatasks: {todos.filter((todo) => todo.is_complete === false).length}</p>
-              <div className={styles.todoList}>
-                {sortedTodos
-                  .filter((todo) => todo.is_complete === false)
-                  .map((todo) => (
-                    <TodoCard
-                      key={todo.id}
-                      id={todo.id}
-                      task={todo.task}
-                      date={todo.inserted_at}
-                      deleteTodo={deleteTodo}
-                      is_complete={todo.is_complete}
-                    />
-                  ))}
-              </div>
-              <p>completed supatasks: {todos.filter((todo) => todo.is_complete === true).length}</p>
-              <div className={styles.todoList}>
-                {sortedTodos.map(
-                  (todo) =>
-                    todo.is_complete && (
-                      <TodoCard
-                        key={todo.id}
-                        id={todo.id}
-                        task={todo.task}
-                        date={todo.inserted_at}
-                        deleteTodo={deleteTodo}
-                        is_complete={todo.is_complete}
-                      />
-                    )
-                )}
-              </div>
-            </>
+          <div className={styles.todoList}>
+            <SkeletonTodoCard isLoading={isLoading} />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className={`${styles.container} ${styles[theme]}`}>
+      <h1>My Todos</h1>
+      <div className={styles.todoContainer}>
+        <div className={`${styles.addTodo} ${styles[theme]}`}>
+          <input
+            className={`${styles.input} ${styles[theme]}`}
+            type="text"
+            value={task || ""}
+            placeholder="Start creating a supatask!"
+            onChange={(e) => setTask(e.target.value)}
+          />
+          <button onClick={addTodo}>
+            <MdAdd size={30} />
+          </button>
+        </div>
+
+        <p>active supatasks: {todos.filter((todo) => todo.is_complete === false).length}</p>
+        <div className={styles.todoList}>
+          {sortedTodos
+            .filter((todo) => todo.is_complete === false)
+            .map((todo) => (
+              <TodoCard
+                key={todo.id}
+                id={todo.id}
+                task={todo.task}
+                date={todo.inserted_at}
+                deleteTodo={deleteTodo}
+                is_complete={todo.is_complete}
+              />
+            ))}
+        </div>
+        <p>completed supatasks: {todos.filter((todo) => todo.is_complete === true).length}</p>
+        <div className={styles.todoList}>
+          {sortedTodos.map(
+            (todo) =>
+              todo.is_complete && (
+                <TodoCard
+                  key={todo.id}
+                  id={todo.id}
+                  task={todo.task}
+                  date={todo.inserted_at}
+                  deleteTodo={deleteTodo}
+                  is_complete={todo.is_complete}
+                />
+              )
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

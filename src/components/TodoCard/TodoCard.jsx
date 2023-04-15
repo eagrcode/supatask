@@ -119,7 +119,6 @@ function TodoCard({ id, task, date, deleteTodo, is_complete }) {
           </div>
 
           <div className={styles.todoBtm}>
-            <button onClick={() => toggleComplete(id)}>complete</button>
             {isLoading ? (
               <div className={styles.pulse}>
                 <PulseLoader
@@ -133,7 +132,11 @@ function TodoCard({ id, task, date, deleteTodo, is_complete }) {
             ) : (
               <>
                 <p>{task || undefined}</p>
-                <p>{isComplete.toString()}</p>
+                {isComplete ? (
+                  <button className={styles.uncheck} onClick={() => uncheckComplete(id)}></button>
+                ) : (
+                  <button className={styles.check} onClick={() => checkComplete(id)}></button>
+                )}
               </>
             )}
           </div>
