@@ -8,8 +8,9 @@ import RegisterSuccess from "./pages/RegisterSuccess/RegisterSuccess";
 
 import { Route, Routes } from "react-router-dom";
 
-// utils
+// auth routes
 import AuthRoute from "./utils/AuthRoute/AuthRoute";
+import AuthRouteRegisterSuccess from "./utils/AuthRouteRegisterSuccess/AuthRouteRegisterSuccess";
 
 // styles
 import "./App.scss";
@@ -21,7 +22,9 @@ export default function App() {
       <Route path="/" element={<Navbar />}>
         <Route index element={<Home />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/register-success" element={<RegisterSuccess />} />
+        <Route element={<AuthRouteRegisterSuccess />}>
+          <Route path="/register-success" element={<RegisterSuccess />} />
+        </Route>
         <Route path="/login" element={<Login />} />
         <Route element={<AuthRoute />}>
           <Route path="/account" element={<Account />} />

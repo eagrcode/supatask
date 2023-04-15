@@ -10,6 +10,7 @@ import styles from "./Register.module.scss";
 
 // context
 import { useTheme } from "../../context/ThemeProvider";
+import { useAuth } from "../../context/AuthProvider";
 
 // icons
 import { MdEmail, MdLock } from "react-icons/md";
@@ -25,7 +26,8 @@ function Register() {
   const [lastName, setLastName] = useState("");
   const [isLoading, setIsLoading] = useState(null);
 
-  // theme context
+  // context
+  const { setRegisterSuccess } = useAuth();
   const { theme } = useTheme();
 
   const navigate = useNavigate();
@@ -56,6 +58,7 @@ function Register() {
       if (error) {
         console.log(error);
       } else {
+        setRegisterSuccess(true);
         navigate("/register-success");
       }
     } catch (error) {

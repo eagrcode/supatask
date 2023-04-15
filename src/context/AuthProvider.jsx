@@ -10,8 +10,8 @@ const AuthProvider = ({ children }) => {
   // state
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
+  const [registerSuccess, setRegisterSuccess] = useState(false);
 
-  const location = useLocation();
   const navigate = useNavigate();
 
   // login
@@ -55,7 +55,9 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, signOut }}>
+    <AuthContext.Provider
+      value={{ user, loading, login, signOut, registerSuccess, setRegisterSuccess }}
+    >
       {!loading && children}
     </AuthContext.Provider>
   );
