@@ -30,13 +30,26 @@
 .btnContainer {
   display: flex;
   gap: 5px;
+}
 
-  .icon {
-    opacity: 0.7;
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: transparent;
+  opacity: 0.7;
 
-    &:hover {
-      opacity: 1;
-    }
+  &.dark {
+    color: var(--primary-text-dark);
+  }
+
+  &.light {
+    color: var(--primary-text-light);
+  }
+
+  &:hover {
+    opacity: 1;
   }
 }
 

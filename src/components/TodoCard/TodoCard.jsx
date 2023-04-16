@@ -85,11 +85,14 @@ function TodoCard({ id, task, date, deleteTodo, is_complete }) {
           <div className={styles.todoTop}>
             <span className={styles.date}>{date}</span>
             <div className={styles.btnContainer}>
-              <button onClick={cancelEdit}>
-                <MdCancel className={styles.icon} size={25} />
+              <button className={`${styles.button} ${styles[theme]}`} onClick={cancelEdit}>
+                <MdCancel size={25} />
               </button>
-              <button onClick={() => updateTodo(id)}>
-                <MdDone className={styles.icon} size={25} />
+              <button
+                className={`${styles.button} ${styles[theme]}`}
+                onClick={() => updateTodo(id)}
+              >
+                <MdDone size={25} />
               </button>
             </div>
           </div>
@@ -109,11 +112,17 @@ function TodoCard({ id, task, date, deleteTodo, is_complete }) {
           <div className={styles.todoTop}>
             <p className={styles.date}>{date}</p>
             <div className={styles.btnContainer}>
-              <button onClick={() => setEditing(!editing)}>
-                <MdEdit className={styles.icon} size={25} />
+              <button
+                className={`${styles.button} ${styles[theme]}`}
+                onClick={() => setEditing(!editing)}
+              >
+                <MdEdit size={25} />
               </button>
-              <button onClick={() => deleteTodo(id)}>
-                <MdDeleteForever className={styles.icon} size={25} />
+              <button
+                className={`${styles.button} ${styles[theme]}`}
+                onClick={() => deleteTodo(id)}
+              >
+                <MdDeleteForever size={25} />
               </button>
             </div>
           </div>

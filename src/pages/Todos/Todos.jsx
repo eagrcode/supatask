@@ -125,7 +125,7 @@ function Todo() {
               placeholder="Start creating a supatask!"
               onChange={(e) => setTask(e.target.value)}
             />
-            <button onClick={addTodo}>
+            <button className={`${styles.button} ${styles[theme]}`} onClick={addTodo}>
               <MdAdd size={30} />
             </button>
           </div>
@@ -149,7 +149,7 @@ function Todo() {
             placeholder="Start creating a supatask!"
             onChange={(e) => setTask(e.target.value)}
           />
-          <button onClick={addTodo}>
+          <button className={`${styles.button} ${styles[theme]}`} onClick={addTodo}>
             <MdAdd size={30} />
           </button>
         </div>
