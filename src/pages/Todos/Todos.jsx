@@ -22,9 +22,9 @@ function Todo() {
   const [todos, setTodos] = useState([]);
   const [task, setTask] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const { user } = useAuth();
 
-  // theme provider
+  // context
+  const { user } = useAuth();
   const { theme } = useTheme();
 
   // listen to changes in database and update state
@@ -112,6 +112,7 @@ function Todo() {
     const { error } = await supabase.from("todos").delete().eq("id", id);
   };
 
+  // show skelton when loading true
   if (isLoading) {
     return (
       <div className={`${styles.container} ${styles[theme]}`}>
@@ -149,7 +150,12 @@ function Todo() {
             placeholder="Start creating a supatask!"
             onChange={(e) => setTask(e.target.value)}
           />
-          <button className={`${styles.button} ${styles[theme]}`} onClick={addTodo}>
+          <button
+            type="button"
+            aria-label="add task"
+            className={`${styles.button} ${styles[theme]}`}
+            onClick={addTodo}
+          >
             <MdAdd size={30} />
           </button>
         </div>

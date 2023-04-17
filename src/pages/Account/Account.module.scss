@@ -36,11 +36,14 @@
 
   input {
     background-color: transparent;
-    outline: none;
-
-    border: solid 2px rgba(128, 128, 128, 0.5);
+    outline: transparent;
+    border: solid 2px transparent;
     padding: 10px;
     border-radius: 3px;
+
+    &:hover {
+      border: solid 2px var(--accent-color);
+    }
 
     &:focus {
       border: solid 2px var(--accent-color);
@@ -48,10 +51,28 @@
 
     &.dark {
       color: var(--primary-text-dark);
+      background-color: hsl(0, 0%, 20%);
+
+      &:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus {
+        -webkit-text-fill-color: var(--primary-text-dark) !important;
+        -webkit-box-shadow: 0 0 0px 40rem hsl(0, 0%, 20%) inset;
+        border: solid 2px var(--accent-color);
+      }
     }
 
     &.light {
       color: var(--primary-text-light);
+      background-color: hsl(270, 5%, 80%);
+
+      &:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus {
+        -webkit-text-fill-color: var(--primary-text-light) !important;
+        -webkit-box-shadow: 0 0 0px 40rem hsl(270, 5%, 80%) inset;
+        border: solid 2px var(--accent-color);
+      }
     }
   }
 }

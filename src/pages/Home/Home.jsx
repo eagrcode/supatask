@@ -9,12 +9,14 @@ import { useTheme } from "../../context/ThemeProvider";
 import { HeroBtn } from "../../components";
 
 function Home() {
+  // context providers
   const { user, loading } = useAuth();
   const { theme } = useTheme();
 
+  // display if no authenticated user
   if (!user) {
     return (
-      <main className={`${styles.main} ${styles[theme]}`}>
+      <div className={`${styles.main} ${styles[theme]}`}>
         <div className={styles.hero}>
           <h1>
             React & Supabase <span>CRUD</span> app
@@ -22,7 +24,7 @@ function Home() {
           <p>Supatask is a simple tool designed to keep track of your daily tasks.</p>
           <HeroBtn text={"Get Started"} />
         </div>
-      </main>
+      </div>
     );
   }
 

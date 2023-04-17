@@ -2,7 +2,8 @@
 import styles from "./ErrorToast.module.scss";
 
 // icons
-import { MdError } from "react-icons/md";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 
 // context
 import { useTheme } from "../../../context/ThemeProvider";
@@ -19,7 +20,7 @@ function ErrorToast({ isToast }) {
           : `${styles.toast} ${styles[theme]}`
       }
     >
-      <MdError size={30} style={{ color: "red" }} />
+      <FontAwesomeIcon icon={faTriangleExclamation} color="red" size="xl" />
       <div className={styles.text}>
         <p>Could not update your account</p>
       </div>

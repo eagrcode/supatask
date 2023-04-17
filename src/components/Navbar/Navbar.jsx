@@ -106,6 +106,7 @@ function Navbar() {
               )}
             </li>
             <button
+              aria-label="toggle-mode"
               className={`${styles.btn} ${styles[theme]}`}
               onClick={() => setTheme(theme == "light" ? "dark" : "light")}
             >

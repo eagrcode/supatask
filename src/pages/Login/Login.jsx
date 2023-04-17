@@ -59,7 +59,7 @@ function Login() {
 
   return (
     <>
-      <main className={`${styles.main} ${styles[theme]}`}>
+      <div className={`${styles.main} ${styles[theme]}`}>
         <h1 className={styles.h1}>Log in to Supatask</h1>
         <form className={styles.form} onSubmit={signInUser}>
           <p>Enter your email address and password.</p>
@@ -96,9 +96,11 @@ function Login() {
               Sign up
             </Link>
           </p>
-          <p style={{ color: "red" }}>{errorMessage}</p>
+          <p className={styles.error} style={{ color: "red" }}>
+            {errorMessage}
+          </p>
         </form>
-      </main>
+      </div>
     </>
   );
 }

@@ -8,7 +8,10 @@ import styles from "./TodoCard.module.scss";
 import { useState } from "react";
 
 // libraries
-import { MdDeleteForever, MdCancel, MdDone, MdEdit } from "react-icons/md";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faPenToSquare, faXmark, faCheck } from "@fortawesome/free-solid-svg-icons";
+
+// spinners
 import PulseLoader from "react-spinners/PulseLoader";
 
 // context
@@ -85,14 +88,21 @@ function TodoCard({ id, task, date, deleteTodo, is_complete }) {
           <div className={styles.todoTop}>
             <span className={styles.date}>{date}</span>
             <div className={styles.btnContainer}>
-              <button className={`${styles.button} ${styles[theme]}`} onClick={cancelEdit}>
-                <MdCancel size={25} />
+              <button
+                type="button"
+                aria-label="cancel edit"
+                className={`${styles.button} ${styles[theme]}`}
+                onClick={cancelEdit}
+              >
+                <FontAwesomeIcon icon={faXmark} size="2xl" />
               </button>
               <button
+                type="button"
+                aria-label="save edit"
                 className={`${styles.button} ${styles[theme]}`}
                 onClick={() => updateTodo(id)}
               >
-                <MdDone size={25} />
+                <FontAwesomeIcon icon={faCheck} size="2xl" />
               </button>
             </div>
           </div>
@@ -113,16 +123,20 @@ function TodoCard({ id, task, date, deleteTodo, is_complete }) {
             <p className={styles.date}>{date}</p>
             <div className={styles.btnContainer}>
               <button
+                type="button"
+                aria-label="edit"
                 className={`${styles.button} ${styles[theme]}`}
                 onClick={() => setEditing(!editing)}
               >
-                <MdEdit size={25} />
+                <FontAwesomeIcon icon={faPenToSquare} size="2xl" />
               </button>
               <button
+                type="button"
+                aria-label="delete"
                 className={`${styles.button} ${styles[theme]}`}
                 onClick={() => deleteTodo(id)}
               >
-                <MdDeleteForever size={25} />
+                <FontAwesomeIcon icon={faTrash} size="2xl" />
               </button>
             </div>
           </div>
@@ -142,9 +156,19 @@ function TodoCard({ id, task, date, deleteTodo, is_complete }) {
               <>
                 <p>{task || undefined}</p>
                 {isComplete ? (
-                  <button className={styles.uncheck} onClick={() => uncheckComplete(id)}></button>
+                  <button
+                    type="button"
+                    aria-label="mark as uncomplete"
+                    className={styles.uncheck}
+                    onClick={() => uncheckComplete(id)}
+                  ></button>
                 ) : (
-                  <button className={styles.check} onClick={() => checkComplete(id)}></button>
+                  <button
+                    type="button"
+                    aria-label="mark as complete"
+                    className={styles.check}
+                    onClick={() => checkComplete(id)}
+                  ></button>
                 )}
               </>
             )}

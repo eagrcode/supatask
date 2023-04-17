@@ -16,6 +16,10 @@
     background-color: var(--primary-bg-light);
     color: var(--primary-text-light);
   }
+
+  @media (min-width: 900px) {
+    height: calc(100vh - var(--nav-height));
+  }
 }
 
 .h1 {
@@ -52,8 +56,8 @@
 
 .input {
   width: 100%;
-  outline: none;
-  border: transparent;
+  outline: transparent;
+  border: solid 2px transparent;
   border-radius: 3px;
   padding: 10px;
 
@@ -62,11 +66,11 @@
   }
 
   &:hover {
-    outline: solid 2px var(--accent-color);
+    border: solid 2px var(--accent-color);
   }
 
   &:focus {
-    outline: solid 2px var(--accent-color);
+    border: solid 2px var(--accent-color);
   }
 
   &.dark {
@@ -78,7 +82,7 @@
     input:-webkit-autofill:focus {
       -webkit-text-fill-color: var(--primary-text-dark) !important;
       -webkit-box-shadow: 0 0 0px 40rem hsl(0, 0%, 20%) inset;
-      outline: solid 2px var(--accent-color);
+      border: solid 2px var(--accent-color);
     }
   }
 
@@ -91,7 +95,7 @@
     input:-webkit-autofill:focus {
       -webkit-text-fill-color: var(--primary-text-light) !important;
       -webkit-box-shadow: 0 0 0px 40rem hsl(270, 5%, 80%) inset;
-      outline: solid 2px var(--accent-color);
+      border: solid 2px var(--accent-color);
     }
   }
 }
@@ -114,6 +118,10 @@
 
 .link {
   text-decoration: underline;
+
+  &:hover {
+    opacity: 0.7;
+  }
 
   &.dark {
     color: var(--primary-text-dark);

@@ -29,7 +29,7 @@
 
 .btnContainer {
   display: flex;
-  gap: 5px;
+  gap: 1rem;
 }
 
 .button {
@@ -78,7 +78,7 @@
   overflow: hidden;
   border: transparent;
   outline: transparent;
-  padding: 0 5px;
+  padding: 5px;
   border-radius: 3px;
 
   &.dark {
@@ -93,10 +93,10 @@
 }
 
 .check {
-  padding: 8px;
+  border: 2px solid var(--accent-color);
+  padding: 10px;
   background-color: transparent;
   border-radius: 100%;
-  outline: 2px solid var(--accent-color);
 
   &:hover {
     background-color: var(--accent-color);
@@ -104,12 +104,12 @@
 }
 
 .uncheck {
-  padding: 8px;
-  background-color: green;
+  border: 2px solid var(--accent-color);
+  padding: 10px;
+  background-color: var(--accent-color);
   border-radius: 100%;
-  outline: 1px solid;
 
   &:hover {
-    opacity: 0.5;
+    opacity: 0.7;
   }
 }

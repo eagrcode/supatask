@@ -141,7 +141,7 @@ const Account = () => {
           onChange={(e) => setLastName(e.target.value)}
           disabled={loading}
         />
-        <button className={styles.btn} disabled={btnDisable}>
+        <button type="submit" className={styles.btn} disabled={btnDisable}>
           {loading ? <PulseLoader color="var(--primary-text-dark)" size={8} /> : "Update"}
         </button>
       </form>

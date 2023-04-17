@@ -2,7 +2,8 @@
 import styles from "./SuccessToast.module.scss";
 
 // icons
-import { TiTick } from "react-icons/ti";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 // context
 import { useTheme } from "../../../context/ThemeProvider";
@@ -18,7 +19,7 @@ function SuccessToast({ isToast }) {
           : `${styles.toast} ${styles[theme]}`
       }
     >
-      <TiTick size={30} style={{ color: "green" }} />
+      <FontAwesomeIcon icon={faCheck} size="xl" color="green" />
       <div className={styles.text}>
         <p>Account updated</p>
       </div>

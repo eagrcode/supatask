@@ -71,7 +71,7 @@ function Register() {
 
   return (
     <>
-      <main className={`${styles.main} ${styles[theme]}`}>
+      <div className={`${styles.main} ${styles[theme]}`}>
         <h1 className={styles.h1}>Create a Supatask account</h1>
         <form className={styles.form} onSubmit={signUpUser}>
           <p>Sign up with your name, email and a password.</p>
@@ -83,6 +83,7 @@ function Register() {
               onChange={(e) => setFirstName(e.target.value)}
               className={`${styles.input} ${styles[theme]}`}
               placeholder="First name"
+              required
             />
           </div>
           <div className={`${styles.inputRow} ${styles[theme]}`}>
@@ -93,6 +94,7 @@ function Register() {
               onChange={(e) => setLastName(e.target.value)}
               className={`${styles.input} ${styles[theme]}`}
               placeholder="Last name"
+              required
             />
           </div>
           <div className={`${styles.inputRow} ${styles[theme]}`}>
@@ -104,6 +106,7 @@ function Register() {
               onChange={(e) => setEmail(e.target.value)}
               className={`${styles.input} ${styles.hasIcon} ${styles[theme]}`}
               placeholder="Email address"
+              required
             />
           </div>
           <div className={`${styles.inputRow} ${styles[theme]}`}>
@@ -115,9 +118,10 @@ function Register() {
               onChange={(e) => setPassword(e.target.value)}
               className={`${styles.input} ${styles.hasIcon} ${styles[theme]}`}
               placeholder="Password"
+              required
             />
           </div>
-          <button className={styles.button}>
+          <button type="submit" className={styles.button}>
             {isLoading ? <PulseLoader color="var(--primary-text-dark)" size={8} /> : "Submit"}
           </button>
           <p>
@@ -127,7 +131,7 @@ function Register() {
             </Link>
           </p>
         </form>
-      </main>
+      </div>
     </>
   );
 }

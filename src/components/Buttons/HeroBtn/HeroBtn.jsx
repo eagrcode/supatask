@@ -1,6 +1,8 @@
 // styles
-import { NavLink } from "react-router-dom";
 import styles from "./HeroBtn.module.scss";
+
+// react router
+import { NavLink } from "react-router-dom";
 
 function HeroBtn({ text }) {
   return (

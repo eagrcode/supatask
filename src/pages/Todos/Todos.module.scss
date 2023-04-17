@@ -40,18 +40,18 @@
 }
 
 .input {
-  border: transparent;
-  outline: none;
+  border: solid 2px transparent;
+  outline: transparent;
   padding: 10px 45px 10px 10px;
   width: 100%;
   border-radius: 3px;
 
   &:hover {
-    outline: solid 2px var(--accent-color);
+    border: solid 2px var(--accent-color);
   }
 
   &:focus {
-    outline: solid 2px var(--accent-color);
+    border: solid 2px var(--accent-color);
   }
 
   &.dark {
@@ -63,7 +63,7 @@
     input:-webkit-autofill:focus {
       -webkit-text-fill-color: var(--primary-text-dark) !important;
       -webkit-box-shadow: 0 0 0px 40rem hsl(0, 0%, 20%) inset;
-      outline: solid 2px var(--accent-color);
+      border: solid 2px var(--accent-color);
     }
   }
 
@@ -76,7 +76,7 @@
     input:-webkit-autofill:focus {
       -webkit-text-fill-color: var(--primary-text-light) !important;
       -webkit-box-shadow: 0 0 0px 40rem hsl(270, 5%, 80%) inset;
-      outline: solid 2px var(--accent-color);
+      border: solid 2px var(--accent-color);
     }
   }
 }
