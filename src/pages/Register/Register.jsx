@@ -13,7 +13,8 @@ import { useTheme } from "../../context/ThemeProvider";
 import { useAuth } from "../../context/AuthProvider";
 
 // icons
-import { MdEmail, MdLock } from "react-icons/md";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 
 // loading spinners
 import PulseLoader from "react-spinners/PulseLoader";
@@ -95,7 +96,7 @@ function Register() {
             />
           </div>
           <div className={`${styles.inputRow} ${styles[theme]}`}>
-            <MdEmail className={styles.icon} size={25} />
+            <FontAwesomeIcon className={styles.icon} icon={faEnvelope} size="xl" />
             <input
               type="email"
               value={email}
@@ -106,7 +107,7 @@ function Register() {
             />
           </div>
           <div className={`${styles.inputRow} ${styles[theme]}`}>
-            <MdLock className={styles.icon} size={25} />
+            <FontAwesomeIcon className={styles.icon} icon={faLock} size="xl" />
             <input
               type="password"
               value={password}

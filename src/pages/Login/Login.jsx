@@ -10,7 +10,8 @@ import { useAuth } from "../../context/AuthProvider";
 import { useTheme } from "../../context/ThemeProvider";
 
 // icons
-import { MdEmail, MdLock } from "react-icons/md";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 
 // loading spinners
 import PulseLoader from "react-spinners/PulseLoader";
@@ -63,7 +64,7 @@ function Login() {
         <form className={styles.form} onSubmit={signInUser}>
           <p>Enter your email address and password.</p>
           <div className={`${styles.inputRow} ${styles[theme]}`}>
-            <MdEmail className={styles.icon} size={25} />
+            <FontAwesomeIcon className={styles.icon} icon={faEnvelope} size="xl" />
             <input
               type="text"
               value={email}
@@ -75,7 +76,7 @@ function Login() {
             />
           </div>
           <div className={`${styles.inputRow} ${styles[theme]}`}>
-            <MdLock className={styles.icon} size={25} />
+            <FontAwesomeIcon className={styles.icon} icon={faLock} size="xl" />
             <input
               type="password"
               value={password}

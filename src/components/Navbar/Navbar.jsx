@@ -6,7 +6,6 @@ import { useState } from "react";
 
 // react-router
 import { NavLink, Outlet } from "react-router-dom";
-import { useNavigate } from "react-router";
 
 // context
 import { useAuth } from "../../context/AuthProvider";
@@ -16,7 +15,8 @@ import { useTheme } from "../../context/ThemeProvider";
 import { Burger } from "../../components";
 
 // icons
-import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
   // state
@@ -109,7 +109,11 @@ function Navbar() {
               className={`${styles.btn} ${styles[theme]}`}
               onClick={() => setTheme(theme == "light" ? "dark" : "light")}
             >
-              {theme == "dark" ? <MdLightMode size={30} /> : <MdDarkMode size={30} />}
+              {theme == "dark" ? (
+                <FontAwesomeIcon icon={faSun} size="xl" />
+              ) : (
+                <FontAwesomeIcon icon={faMoon} size="xl" />
+              )}
             </button>
           </ul>
         </div>
