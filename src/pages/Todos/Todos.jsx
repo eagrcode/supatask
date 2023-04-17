@@ -9,7 +9,8 @@ import { useAuth } from "../../context/AuthProvider";
 import { useTheme } from "../../context/ThemeProvider";
 
 // icons
-import { MdAdd } from "react-icons/md";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 // styles
 import styles from "./Todos.module.scss";
@@ -127,7 +128,7 @@ function Todo() {
               onChange={(e) => setTask(e.target.value)}
             />
             <button className={`${styles.button} ${styles[theme]}`} onClick={addTodo}>
-              <MdAdd size={30} />
+              <FontAwesomeIcon icon={faPlus} size="2xl" />
             </button>
           </div>
           <div className={styles.todoList}>
@@ -156,7 +157,7 @@ function Todo() {
             className={`${styles.button} ${styles[theme]}`}
             onClick={addTodo}
           >
-            <MdAdd size={30} />
+            <FontAwesomeIcon icon={faPlus} size="2xl" />
           </button>
         </div>
 
