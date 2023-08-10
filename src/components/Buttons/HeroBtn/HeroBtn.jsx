@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 
 function HeroBtn({ text }) {
   return (
-    <NavLink to="register">
+    <NavLink to="login">
       <button className={styles.btn}>{text}</button>
     </NavLink>
   );

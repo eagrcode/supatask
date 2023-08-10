@@ -62,7 +62,9 @@ function Login() {
       <div className={`${styles.main} ${styles[theme]}`}>
         <h1 className={styles.h1}>Log in to Supatask</h1>
         <form className={styles.form} onSubmit={signInUser}>
-          <p>Enter your email address and password.</p>
+          <p>Enter your email address and password or use the test account.</p>
+          <p style={{ fontSize: "1rem" }}>Email: test@test.com</p>
+          <p style={{ fontSize: "1rem" }}>Password: testing123</p>
           <div className={`${styles.inputRow} ${styles[theme]}`}>
             <FontAwesomeIcon className={styles.icon} icon={faEnvelope} size="xl" />
             <input

@@ -67,7 +67,7 @@ function Todo() {
 
   const getTodos = async () => {
     // setIsLoading(true);
-    await sleep(500);
+
     try {
       const { data, error } = await supabase
         .from("todos")

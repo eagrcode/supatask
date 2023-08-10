@@ -31,7 +31,7 @@ function Home() {
   return (
     <main className={`${styles.main} ${styles[theme]}`}>
       <h1>Supatask</h1>
-      <p>Welcome, {user.user_metadata.first_name}</p>
+      <p>Welcome, {user.user_metadata.first_name ? user.user_metadata.first_name : "Guest"}</p>
     </main>
   );
 }

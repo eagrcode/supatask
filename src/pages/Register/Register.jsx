@@ -33,17 +33,10 @@ function Register() {
 
   const navigate = useNavigate();
 
-  // delay data fetching
-  const sleep = (ms) =>
-    new Promise((resolve) => {
-      setTimeout(resolve, ms);
-    });
-
   // register new user
   async function signUpUser(e) {
     e.preventDefault();
     setIsLoading(true);
-    await sleep(500);
 
     try {
       const { error } = await supabase.auth.signUp({
